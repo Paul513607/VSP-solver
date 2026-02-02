@@ -60,9 +60,7 @@ public class EprVertexSeparatorAlgorithm extends VertexSeparatorBase {
                 maxShoreSize,
                 random,
                 EXTERIOR_MAX_STEPS,
-                EXTERIOR_CANDIDATE_LIST_SIZE,
-                3,
-                0.20
+                EXTERIOR_CANDIDATE_LIST_SIZE
         );
     }
 

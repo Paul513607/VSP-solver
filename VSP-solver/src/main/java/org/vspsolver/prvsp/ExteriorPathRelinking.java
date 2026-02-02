@@ -12,23 +12,17 @@ public final class ExteriorPathRelinking {
 
     private final int maxSteps;
     private final int candListSize;
-    private final int minSteps;                 // diversification requirement (paper suggests possible minimum)
-    private final double randomPickProb;        // optional: “probabilistic tabu / random choice” variant
 
     public ExteriorPathRelinking(GraphNeighbourData neighbourhoodData,
                                  int maxShoreSize,
                                  Random random,
                                  int maxSteps,
-                                 int candListSize,
-                                 int minSteps,
-                                 double randomPickProb) {
+                                 int candListSize) {
         this.neighbourhoodData = neighbourhoodData;
         this.maxShoreSize = maxShoreSize;
         this.random = random;
         this.maxSteps = Math.max(1, maxSteps);
         this.candListSize = Math.max(1, candListSize);
-        this.minSteps = Math.max(0, minSteps);
-        this.randomPickProb = Math.max(0.0, Math.min(1.0, randomPickProb));
     }
 
     public PrVspSolution bestOnExteriorPath(PrVspSolution start,
@@ -120,7 +114,7 @@ public final class ExteriorPathRelinking {
             return new Pick(-1, -1, null);
         }
 
-        if (random.nextDouble() < randomPickProb) {
+        if (random.nextDouble() < 0.9) {
             int k = random.nextInt(feasibleCount);
             int idx = feasibleIdx[k];
             int v = J.get(idx);
